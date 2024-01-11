@@ -1,23 +1,26 @@
 /* eslint-disable react/prop-types */
 import { IoIosArrowDown } from 'react-icons/io';
-import { twMerge } from 'tw-merge';
-
-export default function Select({ title, options, className }) {
+import { twMerge } from 'tailwind-merge';
+export default function Select({ title, onChange, options, isDisabled, className }) {
   return (
-    <div className='relative'>
+    <div className='relative text-black'>
       <select
-        defaultValue={''}
-        className={twMerge(`w-24 appearance-none border border-gray-300 bg-white p-4 ${className}`)}>
-        <option value='' disabled hidden>
+        disabled={isDisabled}
+        onChange={e => onChange(e.target.value)}
+        defaultValue=''
+        className={twMerge(
+          ` w-24 appearance-none border border-gray-300 bg-white  p-4  focus:border-gray-500 ${className}`
+        )}>
+        <option value='' hidden disabled>
           {title}
         </option>
         {options.map(option => (
-          <option value={option} key={option}>
+          <option key={option} value={option}>
             {option}
           </option>
         ))}
       </select>
-      <div className='absolute inset-y-0 right-0 pr-3 pointer-events-none flex-center'>
+      <div className='absolute inset-y-0 right-0 flex items-center pr-3 text-gray-700 pointer-events-none'>
         <IoIosArrowDown />
       </div>
     </div>

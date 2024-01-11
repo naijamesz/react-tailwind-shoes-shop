@@ -1,27 +1,67 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Cart from './components/Cart';
 import Nav from './components/Nav';
 import NewArrivalsSection from './components/NewArrivalsSection';
 import ShoeDetail from './components/ShoeDetail';
 import Sidebar from './components/Sidebar';
 import { SHOE_LIST } from './constant';
-import CartItem from './components/CartItem';
 
-export default function App() {
+function App() {
+  const [currShoe, setCurrShoe] = useState(SHOE_LIST[0]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
+
+  useEffect(
+    function closeSidebarListener() {
+      const handleEscapeKey = event => {
+        if (event.key === 'Escape' && isSidebarOpen) {
+          setIsSidebarOpen(false);
+        }
+      };
+      window.addEventListener('keydown', handleEscapeKey);
+      return () => {
+        window.removeEventListener('keydown', handleEscapeKey);
+      };
+    },
+    [isSidebarOpen]
+  );
+
+  const removeFromCart = shoeIndex => {
+    const updatedCartItems = [...cartItems];
+    updatedCartItems.splice(shoeIndex, 1);
+    setCartItems(updatedCartItems);
+  };
+
+  const addToCart = (product, qty, size) => {
+    if (qty && size) {
+      const existingItemIndex = cartItems.findIndex(c => c.product.id === product.id);
+      const updateCartItems = [...cartItems];
+      if (existingItemIndex > -1) {
+        updateCartItems[existingItemIndex].qty = qty;
+        updateCartItems[existingItemIndex].size = size;
+      } else {
+        updateCartItems.push({ product, qty: qty, size: size });
+      }
+      setCartItems(updateCartItems);
+    }
+  };
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
-    <div className='p-10 animate-fadeIn xl:px-24'>
-      <Nav onClickShoppingBtn={() => setIsSidebarOpen(true)} />
-      <ShoeDetail />
-      <NewArrivalsSection items={SHOE_LIST} />
-      <Sidebar isOpen={isSidebarOpen} onClickClose={() => setIsSidebarOpen(false)}>
-        <h2 className='mb-10 text-2xl font-bold'>Cart</h2>
-        <CartItem item={SHOE_LIST[0]} qty={1} size={44} />
-        <CartItem item={SHOE_LIST[2]} qty={1} size={44} />
-        <CartItem item={SHOE_LIST[3]} qty={1} size={44} />
-        <CartItem item={SHOE_LIST[3]} qty={1} size={44} />
-        <CartItem item={SHOE_LIST[3]} qty={1} size={44} />
-        <CartItem item={SHOE_LIST[3]} qty={1} size={44} />
+    <div className='p-10 1000 animate-fadeIn dark:bg-night xl:px-24'>
+      <Nav onClickShoppingBtn={toggleSidebar} cartItems={cartItems} />
+      <Sidebar onClickClose={toggleSidebar} isOpen={isSidebarOpen}>
+        <Cart cartItems={cartItems} onClickTrash={removeFromCart} />
       </Sidebar>
+      <div className='flex flex-col-reverse lg:mt-5 lg:flex-row'>
+        <ShoeDetail shoe={currShoe} onClickAdd={addToCart} />
+      </div>
+      <NewArrivalsSection onClickCard={setCurrShoe} />
     </div>
   );
 }
+
+export default App;

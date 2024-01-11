@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
-  darkMode: 'class',
+  darkMode: ['class'],
   theme: {
     extend: {
       colors: {
@@ -10,15 +10,14 @@ export default {
           50: '#171E2C',
           500: '#0D1120',
         },
+        paleYellow: '#EEFFA4',
+        lavender: '#DDCEFD',
+        paleGreen: '#DAFFA2',
       },
       keyframes: {
-        wiggle: {
-          '0%,100%': { transform: 'rotate(-3deg)' },
-          '50%': { transform: 'rotate(3deg)' },
-        },
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-10px)' },
+          '50%': { transform: 'translateY(-10px)' }, // Adjust the floating height as needed
         },
         fadeIn: {
           '0%': { opacity: '0' },
@@ -26,11 +25,9 @@ export default {
         },
       },
       animation: {
-        wiggle: 'wiggle 1s ease-in-out infinite',
-        float: 'float 4s ease-in-out infinite',
-        fadeIn: 'fadeIn 1s ease-in-out',
+        float: 'float 4s infinite', // Adjust the duration as needed
+        fadeIn: 'fadeIn 1s ease-in-out ',
       },
     },
   },
-  plugins: [],
 };
