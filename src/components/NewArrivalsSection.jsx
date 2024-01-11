@@ -1,7 +1,4 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
 import Card from "./Card";
-
 export default function NewArrivalsSection({ items, onClickCard }) {
   return (
     <div className="mt-20">

@@ -1,14 +1,12 @@
-/* eslint-disable react/prop-types */
-import CartItem from './CartItem';
-
+import CartItem from "./CartItem";
 export default function Cart({ cartItems, onClickTrash }) {
   return (
     <>
-      <h2 className='text-4xl font-bold'>Cart</h2>
-      <ul className='mt-5 space-y-5'>
-        {cartItems.map((cartItem, i) => (
-          <li key={i}>
-            <CartItem cartItem={cartItem} onClickTrash={() => onClickTrash(i)} />
+      <h2 className="mb-5 text-4xl font-bold dark:text-white">Cart</h2>
+      <ul className="space-y-5">
+        {cartItems.map((cartItem) => (
+          <li key={cartItem.product.id}>
+            <CartItem item={cartItem} onClickTrash={onClickTrash} />
           </li>
         ))}
       </ul>

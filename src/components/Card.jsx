@@ -1,14 +1,16 @@
-/* eslint-disable react/prop-types */
-export default function Card({ shoe, onClick }) {
+export default function Card({ item, onClick }) {
   return (
     <div
-      onClick={() => onClick(shoe)}
-      className={`${shoe.bgColor} transform cursor-pointer transition hover:scale-105`}>
-      <div className='p-8 '>
-        <div className='text-2xl font-bold'>{shoe.title}</div>
-        <div className='mt-10 font-semibold underline  text-md underline-offset-4'>SHOP NOW +</div>
+      onClick={() => onClick(item)}
+      className={`${item.className} max-w-xl transform cursor-pointer transition hover:scale-105`}
+    >
+      <div className="p-8">
+        <div className="text-2xl font-bold">{item.title}</div>
+        <div className="mt-10 font-semibold underline underline-offset-4">
+          SHOP NOW +
+        </div>
       </div>
-      <img className='absolute inset-x-[40%] inset-y-4 h-40 w-56 ' src={shoe.src} />
+      <img className="absolute left-[50%] top-5 h-40" src={item.src} />
     </div>
   );
 }

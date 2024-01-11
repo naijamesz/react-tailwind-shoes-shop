@@ -2,15 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'Nunito Sans Variable', sans-serif;
+@layer base {
+  body {
+    font-family: "Nunito Sans Variable", sans-serif;
+  }
 }
 
-@layer components {
-  .anim-click {
-    @apply transform transition active:scale-75;
-  }
+@layer utilities {
   .flex-center {
     @apply flex items-center justify-center;
+  }
+  .btn-press-anim {
+    @apply transition active:scale-75;
   }
 }
