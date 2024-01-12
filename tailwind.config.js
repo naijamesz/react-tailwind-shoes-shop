@@ -1,32 +1,32 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
-  darkMode: ['class'],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: ["class"],
   theme: {
     extend: {
       colors: {
         night: {
-          DEFAULT: '#0D1120',
-          50: '#171E2C',
-          500: '#0D1120',
+          DEFAULT: "#171822",
+          50: "#171E2C",
+          500: "#0e1222",
         },
-        paleYellow: '#EEFFA4',
-        lavender: '#DDCEFD',
-        paleGreen: '#DAFFA2',
+        paleYellow: "#effdb0",
+        lavender: "#e5d9ff",
+        paleGreen: "#d0ff89",
       },
       keyframes: {
         float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-10px)' }, // Adjust the floating height as needed
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" }, // Adjust the floating height as needed
         },
         fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
+          "00%": { opacity: "0" },
+          "100%": { opacity: "1" },
         },
       },
       animation: {
-        float: 'float 4s infinite', // Adjust the duration as needed
-        fadeIn: 'fadeIn 1s ease-in-out ',
+        float: "float 4s infinite", // Adjust the duration as needed
+        fadeIn: "fadeIn 1s ease-in-out ",
       },
     },
   },

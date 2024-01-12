@@ -8,7 +8,7 @@ export default function ShoeDetail({ shoe, onClickAdd }) {
     <div className="flex flex-col space-y-4 dark:text-white lg:flex-row-reverse">
       {/* Shoe image */}
       <div className="flex-1 lg:-mt-32 lg:ml-28">
-        <div className="flex-center  h-full bg-gradient-to-br from-[#F637CF] from-5% via-[#E3D876] via-40% to-[#4DD4C6]">
+        <div className="flex-center h-full  rounded-3xl bg-gradient-to-br from-[#F637CF] from-5% via-[#E3D876] via-40% to-[#4DD4C6]">
           <img className="animate-float" src={shoe.src} />
         </div>
       </div>
@@ -21,12 +21,14 @@ export default function ShoeDetail({ shoe, onClickAdd }) {
             {shoe.price} $
           </div>
           <Select
+            className="rounded-xl"
             value={form.qty}
             onChange={(qty) => setForm({ ...form, qty })}
             title={"QTY"}
             options={QTY}
           />
           <Select
+            className="rounded-xl"
             value={form.size}
             onChange={(size) => setForm({ ...form, size })}
             title={"SIZE"}
@@ -37,7 +39,7 @@ export default function ShoeDetail({ shoe, onClickAdd }) {
         <div className="space-x-10">
           <button
             onClick={() => onClickAdd(shoe, form.qty, form.size)}
-            className="btn-press-anim h-14 w-44 bg-black text-white hover:bg-gray-900 active:bg-gray-700 dark:bg-white dark:text-black"
+            className="btn-press-anim h-14 w-44 rounded-xl bg-black text-white hover:bg-gray-900 active:bg-gray-700 dark:bg-white dark:text-black"
           >
             Add to bag
           </button>

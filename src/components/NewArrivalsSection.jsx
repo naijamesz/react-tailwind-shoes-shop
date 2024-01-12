@@ -1,9 +1,9 @@
 import Card from "./Card";
 export default function NewArrivalsSection({ items, onClickCard }) {
   return (
-    <div className="mt-20">
-      <div className="flex-center">
-        <div className="bg-[url('./assets/lines.png')] bg-center text-4xl font-extrabold dark:text-white">
+    <div className="mt-24">
+      <div className="flex-center ">
+        <div className=" bg-[url('./assets/lines.png')] bg-center text-4xl font-extrabold dark:text-white">
           NEW ARRIVALS
         </div>
       </div>
